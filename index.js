@@ -76,18 +76,23 @@ app.get("/edit_posts/:id", (req, res) => {
     const id = req.params.id;
     // Find the post with the corresponding id
     const post = posts.find(post => post.id === id);
-    // If the post was found, render the edit_posts.ejs file and pass the post to it
+    // Get the list of ids
+    const ids = posts.map(post => post.id);
+    // If the post was found, render the edit_posts.ejs file and pass the post and ids to it
     if (post) {
-        res.render("edit_posts", { post: post });
+        res.render("edit_posts", { post: post, ids: ids });
     } else {
         res.status(404).send('Post not found');
     }
+
 });
 
 //make post
 app.get("/create", (req, res) => {
     // Render the post_creator.ejs file
-    res.render("post_creator");
+    const ids = posts.map(post => post.id);
+
+    res.render("post_creator",{ids: ids});
 });
 
 app.post("/post_creator", (req, res) => {

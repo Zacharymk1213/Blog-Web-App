@@ -1,4 +1,5 @@
 <!-- it should receive a posts title and text. This should be in the form of an editable text. This text should then be sent to the server when the user presses submit-->
+<link rel="stylesheet" type="text/css" href="/styles/edit_posts.css">
 
 <form action="/edit_posts" method="POST">
     <label for="title">Title:</label><br>
@@ -9,3 +10,19 @@
     <textarea id="text" name="text" required><%= post.text %></textarea><br>
     <input type="submit" value="Submit">
   </form>
+  <script>
+    // Get the list of ids from the server
+    const ids = <%- JSON.stringify(ids) %>;
+    // Get the form and the id input field
+    const form = document.querySelector('form');
+    const idInput = document.querySelector('#id');
+    // Add an event listener to the form submit event
+    form.addEventListener('submit', function(event) {
+        // Check if the id is duplicated
+        if (ids.includes(idInput.value)) {
+            // If the id is duplicated, prevent the form from being submitted and display a message
+            event.preventDefault();
+            alert('The ID is duplicated. Please change it.');
+        }
+    });
+</script>

@@ -1,0 +1,19 @@
+* {
+    background-color: skyblue;
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.text {
+    margin: 0 25%;
+}
+
+.edit {
+    display: flex;
+    justify-content: center;
+}

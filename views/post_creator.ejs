@@ -1,6 +1,8 @@
 <!-- Have a form. All fields are mandatory
 One small top bar for title, one small bar for id and a large textbox for the post text. This should then be submitted and added to the post array on the server side
 -->
+<link rel="stylesheet" type="text/css" href="/styles/post_creator.css">
+
 <form action="/post_creator" method="POST">
     <label for="id">ID:</label><br>
     <input type="text" id="id" name="id" required><br>
@@ -10,3 +12,19 @@ One small top bar for title, one small bar for id and a large textbox for the po
     <textarea id="text" name="text" required></textarea><br>
     <input type="submit" value="Submit">
   </form>
+  <script>
+    // Get the list of ids from the server
+    const ids = <%- JSON.stringify(ids) %>;
+    // Get the form and the id input field
+    const form = document.querySelector('form');
+    const idInput = document.querySelector('#id');
+    // Add an event listener to the form submit event
+    form.addEventListener('submit', function(event) {
+        // Check if the id is duplicated
+        if (ids.includes(idInput.value)) {
+            // If the id is duplicated, prevent the form from being submitted and display a message
+            event.preventDefault();
+            alert('The ID is duplicated. Please change it.');
+        }
+    });
+    </script>

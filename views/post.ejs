@@ -1,7 +1,9 @@
-    <h1><%= post.title %></h1>
-    <p><%= post.text %></p>
+<link rel="stylesheet" type="text/css" href="/styles/post.css">
+
+ <h1 id="title"><%= post.title %></h1>
+    <p class = text><%= post.text %></p>
     <!--Button to edit this post that causes to render edit_posts.ejs and passes in this post-->
-    <form action="/edit_posts/<%= post.id %>" method="GET">
+    <form action="/edit_posts/<%= post.id %>" method="GET" class=edit>
         <input type="submit" value="Edit Post">
       </form>
 
