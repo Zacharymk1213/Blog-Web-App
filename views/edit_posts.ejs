@@ -1,0 +1,11 @@
+<!-- it should receive a posts title and text. This should be in the form of an editable text. This text should then be sent to the server when the user presses submit-->
+
+<form action="/edit_posts" method="POST">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value="<%= post.title %>" required><br>
+    <label for="id">Post ID:</label><br>
+    <input type="text" id="id" name="id" value="<%= post.id %>" required><br>
+    <label for="text">Text:</label><br>
+    <textarea id="text" name="text" required><%= post.text %></textarea><br>
+    <input type="submit" value="Submit">
+  </form>

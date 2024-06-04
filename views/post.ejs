@@ -1,0 +1,7 @@
+    <h1><%= post.title %></h1>
+    <p><%= post.text %></p>
+    <!--Button to edit this post that causes to render edit_posts.ejs and passes in this post-->
+    <form action="/edit_posts/<%= post.id %>" method="GET">
+        <input type="submit" value="Edit Post">
+      </form>
+

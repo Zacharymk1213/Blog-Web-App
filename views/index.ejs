@@ -1,0 +1,10 @@
+<% posts.forEach(post => { %>
+    <h1><a href="/post/<%= post.id %>"><%= post.title %></a></h1>
+    <!-- display a button with delete this post. If this button is pressed, it should send a delete request to the server with the post id as a parameter-->
+    <form action="/delete_posts/<%= post.id %>" method="POST">
+        <input type="submit" value="Delete Post">
+    </form>
+  <% }); %>
+
+  <!-- Text create a post with a link to post_creator.ejs-->
+  <a href="/create">Create a Post</a>
