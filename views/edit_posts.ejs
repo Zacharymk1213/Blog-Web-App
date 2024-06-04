@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="/styles/edit_posts.css">
 
 <form action="/edit_posts" method="POST">
+    <input type="hidden" name="oldId" value="<%= post.id %>">
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title" value="<%= post.title %>" required><br>
     <label for="id">Post ID:</label><br>
@@ -9,18 +10,20 @@
     <label for="text">Text:</label><br>
     <textarea id="text" name="text" required><%= post.text %></textarea><br>
     <input type="submit" value="Submit">
-  </form>
+</form>
   <script>
     // Get the list of ids from the server
     const ids = <%- JSON.stringify(ids) %>;
     // Get the form and the id input field
     const form = document.querySelector('form');
     const idInput = document.querySelector('#id');
+    // Get the original id
+    const originalId = '<%= post.id %>';
     // Add an event listener to the form submit event
     form.addEventListener('submit', function(event) {
-        // Check if the id is duplicated
-        if (ids.includes(idInput.value)) {
-            // If the id is duplicated, prevent the form from being submitted and display a message
+        // Check if the id is duplicated and not the same as the original id
+        if (ids.includes(idInput.value) && idInput.value !== originalId) {
+            // If the id is duplicated and not the same as the original id, prevent the form from being submitted and display a message
             event.preventDefault();
             alert('The ID is duplicated. Please change it.');
         }
